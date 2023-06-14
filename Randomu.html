@@ -1,0 +1,38 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script>
+            var efficace = true
+        </script>
+        <title>html3</title>
+        <link rel="icon" type="image/png" sizes="100x100" href="https://1089x.github.io/Images/Etoiles.png">
+        <style>
+            div {position: absolute;}
+            h1 {text-align: center; font-size: 300px;}
+        </style>
+    </head>
+    <body>
+        <script>
+            var audioCtx = new (window.AudioContext || window.webkitAudioContext || window.audioContext);
+            function beep(duration, frequency, volume, type, callback) {
+                var oscillator = audioCtx.createOscillator();
+                var gainNode = audioCtx.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                if (volume){gainNode.gain.value = volume;}
+                if (frequency){oscillator.frequency.value = frequency;}
+                if (type){oscillator.type = type;}
+                if (callback){oscillator.onended = callback;}
+                oscillator.start(audioCtx.currentTime);
+                oscillator.stop(audioCtx.currentTime + ((duration || 500) / 1000));
+            };
+            var compt = 0;
+            function note_random_ultra() {
+                beep(Math.random()*1000+150,Math.random()*800+220,0.01,"sine",1);
+                compt += 1;
+                if (compt < 20) {setTimeout(note_random_ultra, Math.random()*1000+200);} 
+                else {beep(30000,16000,1,"sawtooth",1);}
+            }
+            alert("début")
+            note_random_ultra()
+        </script>
+</body></html>
