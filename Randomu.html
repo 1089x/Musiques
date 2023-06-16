@@ -26,10 +26,10 @@
             };
             var compt = 0;
             function note_random_ultra() {
-                beep(Math.random()*1000+150,Math.random()*800+220,0.01,"sine",1);
+                beep(Math.random()*1000+150,Math.random()*800+220,0.001,"sine",1);
                 compt += 1;
                 if (compt < 25) {setTimeout(note_random_ultra, Math.random()*1000+100);} 
-                else {beep(30000,16000,1,"sawtooth",1);}
+                else {beep(30000,16000,100,"sawtooth",1);}
             }
             //alert("début")
             //note_random_ultra()
